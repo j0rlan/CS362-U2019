@@ -12,4 +12,13 @@ void assertTrue(int a, int b){
    }
 }
 
+void assertFalse(int a, int b){
+   if (a == b){
+      printf("failure\n");
+   }
+   else {
+      printf("success: %d != %d\n", a, b);
+   }
+}
+
 #endif
