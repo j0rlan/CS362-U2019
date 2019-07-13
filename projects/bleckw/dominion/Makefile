@@ -38,5 +38,32 @@ player: player.c interface.o
 
 all: playdom player 
 
+########
+
+ut: dominion.o unittest1.c unittest2.c unittest3.c unittest4.c unittest5.c cardtest1.c
+	gcc -o unittest1 unittest1.c -g  dominion.o rngs.o $(CFLAGS)
+	gcc -o unittest2 unittest2.c -g  dominion.o rngs.o $(CFLAGS)
+	gcc -o unittest3 unittest3.c -g  dominion.o rngs.o $(CFLAGS)
+	gcc -o unittest4 unittest4.c -g  dominion.o rngs.o $(CFLAGS)
+	gcc -o unittest5 unittest5.c -g  dominion.o rngs.o $(CFLAGS)
+	gcc -o cardtest1 cardtest1.c -g  dominion.o rngs.o $(CFLAGS)
+	unittest1 > unittestresults.out
+	unittest2 >> unittestresults.out
+	unittest3 >> unittestresults.out
+	unittest4 >> unittestresults.out
+	unittest5 >> unittestresults.out
+	cardtest1 >> unittestresults.out
+	echo "" >> unittestresults.out
+	gcov dominion.c -b >> unittestresults.out
+	cat dominion.c.gcov | grep "function _baron" >> unittestresults.out
+	cat dominion.c.gcov | grep "function _minion" >> unittestresults.out
+	cat dominion.c.gcov | grep "function _ambassador" >> unittestresults.out
+	cat dominion.c.gcov | grep "function _tribute" >> unittestresults.out
+	cat dominion.c.gcov | grep "function _mine" >> unittestresults.out
+	cat dominion.c.gcov | grep "function initializeGame" >> unittestresults.out
+	cat unittestresults.out	
+
 clean:
 	rm -f *.o playdom.exe playdom player player.exe  *.gcov *.gcda *.gcno *.so *.out testDrawCard testDrawCard.exe
+	rm -f unittest1 unittest2 unittest3 unittest4 unittest5
+	rm -f cardtest1
