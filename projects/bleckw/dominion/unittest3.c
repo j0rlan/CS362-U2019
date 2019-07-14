@@ -27,10 +27,10 @@ void unitTest(int cursesInHand, int returnQty){
       }
    }
    for (int i = 0; i > cursesInHand; i++){
-      state.hand[0][4-1] = curse;
+      state.hand[0][4-i] = curse;
    }
 
-   _ambassador(5, returnQty, 0, 0, &state);
+   _ambassador(4, returnQty, 0, 0, &state);
 
 }
 
