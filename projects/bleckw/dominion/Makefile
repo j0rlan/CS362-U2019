@@ -62,7 +62,7 @@ unittestresults: dominion.o unittest1.c unittest2.c unittest3.c unittest4.c unit
 	cardtest4 >> unittestresults.out
 	cardtest5 >> unittestresults.out
 	echo "" >> unittestresults.out
-	gcov dominion.c -b >> unittestresults.out
+	gcov dominion.c -b -f >> unittestresults.out
 	cat dominion.c.gcov | grep "function _baron" >> unittestresults.out
 	cat dominion.c.gcov | grep "function _minion" >> unittestresults.out
 	cat dominion.c.gcov | grep "function _ambassador" >> unittestresults.out
