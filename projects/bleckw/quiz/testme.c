@@ -6,8 +6,7 @@
 char inputChar()
 {
    // TODO: rewrite this function
-   char c = rand() % 256;
-   return c;
+   return rand() % 256;
 }
 
 char *inputString()
@@ -15,14 +14,16 @@ char *inputString()
    // TODO: rewrite this function
    int len = rand() % 2048;
 
+   char *s;
    char block[len];
-   char *s = block;
-
-   if (len == 0) { s = "reset\0"; }
+   
+   // through intermediate runs I tested a length of 42 and found it to be unintersting
+   if (len == 42) { s = "reset\0"; }
 
    else {
       for (int i = 0; i < len; i++) { block[i] = rand() % 256; }
       block[len - 1] = 0;
+      s = block;
    }
 
    return s;
