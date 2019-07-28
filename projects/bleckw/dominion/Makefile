@@ -74,7 +74,24 @@ unittestresults: dominion.o unittest1.c unittest2.c unittest3.c unittest4.c unit
 	cat dominion.c.gcov | grep "function getWinners" >> unittestresults.out
 	cat dominion.c.gcov | grep "function drawCard" >> unittestresults.out
 
+#######
+
+randomtestresults: dominion.o randomtestcard1.c randomtestcard2.c randomtestcard3.c
+	gcc -o randomtestcard1 randomtestcard1.c -g gameStateFuzz.h dominion.o rngs.o $(CFLAGS)
+	gcc -o randomtestcard2 randomtestcard2.c -g gameStateFuzz.h dominion.o rngs.o $(CFLAGS)
+	gcc -o randomtestcard3 randomtestcard3.c -g gameStateFuzz.h dominion.o rngs.o $(CFLAGS)
+	randomtestcard1 > randomtestresults.out
+	randomtestcard2 >> randomtestresults.out
+	randomtestcard3 >> randomtestresults.out
+	echo "" >> randomtestresults.out
+	gcov dominion.c -b -f >> randomtestresults.out
+	cat dominion.c.gcov | grep "function _baron" >> randomtestresults.out
+	cat dominion.c.gcov | grep "function _minion" >> randomtestresults.out
+	cat dominion.c.gcov | grep "function _tribute" >> randomtestresults.out
+
+
 clean:
 	rm -f *.o playdom.exe playdom player player.exe  *.gcov *.gcda *.gcno *.so *.out testDrawCard testDrawCard.exe
 	rm -f unittest1 unittest2 unittest3 unittest4 unittest5
 	rm -f cardtest1 cardtest2 cardtest3 cardtest4 cardtest5
+	rm -f randomtestcard1 randomtestcard2 randomtestcard3
