@@ -26,7 +26,7 @@ int main(int argc, char* argv[]){
    int fails = 0;
 
 
-   for (i = 0; i < TESTVOLUME * 3; i++){
+   for (i = 0; i < TESTVOLUME * 5; i++){
       state = fuzzGameState(state);
       choice1 = floor(Random() * 2);
       currentPlayer = state->whoseTurn;
