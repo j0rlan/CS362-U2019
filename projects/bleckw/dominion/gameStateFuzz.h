@@ -3,7 +3,7 @@
 #include "rngs.h"
 #include "dominion.h"
 
-#define RTDEBUG 0
+#define RTDEBUG 1
 #define TESTVOLUME 5000
 
 int rando(int n){
