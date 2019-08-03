@@ -26,7 +26,7 @@ int main(int argc, char* argv[]){
    int fails = 0;
 
 
-   for (i = 0; i < TESTVOLUME; i++){
+   for (i = 0; i < TESTVOLUME * 5; i++){
       state = fuzzGameState(state);
       choice1 = floor(Random() * 2);
       currentPlayer = state->whoseTurn;
@@ -38,7 +38,7 @@ int main(int argc, char* argv[]){
       free(state);
    }
 
-   for (i = 0; i < TESTVOLUME / 10; i++){
+   for (i = 0; i < TESTVOLUME / 2; i++){
       // set first card in hand to estate
       state = fuzzGameState(state);
       // setting choice1 explicitly
@@ -54,7 +54,7 @@ int main(int argc, char* argv[]){
       free(state);
    }
 
-   for (i = 0; i < 10; i++){
+   for (i = 0; i < TESTVOLUME / 2; i++){
       state = fuzzGameState(state);
       // setting choice1 explicitly
       choice1 = floor(Random() * 2);
@@ -125,10 +125,12 @@ int checkBaron(int choice1, int currentPlayer, int nextPlayer, struct gameState 
 
    check = memcmp(&pre, state, sizeof(struct gameState));
 
-   if (RTDEBUG !=0){
+   if (RTDEBUG != 0){
       if (check != 0){
          msg = "test %d failed with choice1: %d, currentPlayer: %d, nextPlayer %d\n";
          printf(msg, i, choice1, currentPlayer, nextPlayer);
+         char* stateCheck = "player coins: %d expected %d";
+         printf(stateCheck, state->coins, pre.coins);
       }
    }
    return check;

@@ -103,6 +103,9 @@ int checkTribute(int currentPlayer, int nextPlayer, struct gameState *state){
       if (check != 0){
          msg = "test %d failed with currentPlayer: %d, nextPlayer %d\n";
          printf(msg, i, currentPlayer, nextPlayer);
+         char* stateCheck = "player actions: %d, coins %d, cards %d expected %d %d %d";
+         printf(stateCheck, state->numActions, state->coins, state->handCount[currentPlayer],
+               pre.numActions, pre.coins, pre.handCount[currentPlayer]);
       }
    }
    return check;

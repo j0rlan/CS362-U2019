@@ -130,8 +130,10 @@ int checkMinion(int choice2, int choice1, int handPos, int currentPlayer, struct
 
    if (RTDEBUG !=0){
       if (check != 0){
-         msg = "test %d failed with choice1: %d";
-         printf(msg, i, choice1);
+         msg = "test %d failed with choice1: %d, choice2: %d, handPos: %d";
+         printf(msg, i, choice1, choice2, handPos);
+         char* stateCheck = "player coins: %d expected %d";
+         printf(stateCheck, state->coins, pre.coins);
       }
    }
    return check;
