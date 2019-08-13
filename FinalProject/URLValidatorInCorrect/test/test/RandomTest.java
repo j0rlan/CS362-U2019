@@ -55,7 +55,9 @@ public class RandomTest extends TestCase {
 	    for(int i=0; i<200; i++) {
 	    	String url = ""; // url to build up
 			boolean valid = true; // validity boolean to build up
-
+			boolean includeA = rand.nextInt(100) % 2 == 0; 
+			boolean includeB = rand.nextInt(100) % 2 == 0;
+			
 			// get random indices for scheme, port, auth, query arrays
 			int s = rand.nextInt(sLen);
 			int a = rand.nextInt(aLen);
@@ -74,14 +76,14 @@ public class RandomTest extends TestCase {
 			valid = valid && authority.valid;
 
 			// add port if port index is even (to approximate optionality)
-			if (po % 2 == 0) {
+			if (includeA) {
 				ResultPair port = ports[po];
 				url = url.concat(port.item);
 				valid = valid && port.valid;
 			}
 
 	    	// add path if path index is even (to approximate optionality)
-			if (pa % 2 == 0) {
+			if (includeB) {
 				ResultPair path = paths[pa];
 				url = url.concat(path.item);
 				valid = valid && path.valid;
@@ -111,7 +113,9 @@ public class RandomTest extends TestCase {
 	    for(int i=0; i<200; i++) {
 	    	String url = ""; // url to build up
 			boolean valid = true; // validity boolean to build up
-
+			boolean includeA = rand.nextInt(100) % 2 == 0; 
+			boolean includeB = rand.nextInt(100) % 2 == 0;
+			
 			// get random indices for scheme, port, auth, query arrays
 			int s = rand.nextInt(sLen);
 			int a = rand.nextInt(aLen);
@@ -135,14 +139,14 @@ public class RandomTest extends TestCase {
 			valid = valid && port.valid;
 
 	    	// add path if path index is even (to approximate optionality)
-			if (pa % 2 == 0) {
+			if (includeA) {
 				ResultPair path = paths[pa];
 				url = url.concat(path.item);
 				valid = valid && path.valid;
 			}
 
 	    	// add query if query index is even (to approximate optionality)
-			if (q % 2 == 0) {
+			if (includeB) {
 				ResultPair query = queries[q];
 				url = url.concat(query.item);
 				valid = valid && query.valid;
@@ -165,7 +169,9 @@ public class RandomTest extends TestCase {
 	    for(int i=0; i<200; i++) {
 	    	String url = ""; // url to build up
 			boolean valid = true; // validity boolean to build up
-
+			boolean includeA = rand.nextInt(100) % 2 == 0; 
+			boolean includeB = rand.nextInt(100) % 2 == 0;
+			
 			// get random indices for scheme, port, auth, query arrays
 			int s = rand.nextInt(sLen);
 			int a = rand.nextInt(aLen);
@@ -184,7 +190,7 @@ public class RandomTest extends TestCase {
 			valid = valid && authority.valid;
 
 			// add port if port index is even (to approximate optionality)
-			if (po % 2 == 0) {
+			if (includeA) {
 				ResultPair port = ports[po];
 				url = url.concat(port.item);
 				valid = valid && port.valid;
@@ -196,7 +202,7 @@ public class RandomTest extends TestCase {
 			valid = valid && path.valid;
 
 	    	// add query if query index is even (to approximate optionality)
-			if (q % 2 == 0) {
+			if (includeB) {
 				ResultPair query = queries[q];
 				url = url.concat(query.item);
 				valid = valid && query.valid;
