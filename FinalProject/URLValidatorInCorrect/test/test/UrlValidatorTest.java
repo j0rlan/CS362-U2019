@@ -1,3 +1,4 @@
+package test;
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
  * contributor license agreements.  See the NOTICE file distributed with
@@ -15,6 +16,9 @@
  * limitations under the License.
  */
 
+import files.RegexValidator;
+import files.ResultPair;
+import files.UrlValidator;
 import junit.framework.TestCase;
 
 /**
@@ -504,7 +508,7 @@ protected void setUp() {
     * all of which must be individually valid for the entire URL to be considered
     * valid.
     */
-   ResultPair[] testUrlScheme = {new ResultPair("http://", true),
+   public static ResultPair[] testUrlScheme = {new ResultPair("http://", true),
                                new ResultPair("ftp://", true),
                                new ResultPair("h3t://", true),
                                new ResultPair("3ht://", false),
@@ -513,7 +517,7 @@ protected void setUp() {
                                new ResultPair("http/", false),
                                new ResultPair("://", false)};
 
-   ResultPair[] testUrlAuthority = {new ResultPair("www.google.com", true),
+   public static ResultPair[] testUrlAuthority = {new ResultPair("www.google.com", true),
                                   new ResultPair("www.google.com.", true),
                                   new ResultPair("go.com", true),
                                   new ResultPair("go.au", true),
@@ -534,7 +538,7 @@ protected void setUp() {
                                   new ResultPair("aaa", false),
                                   new ResultPair("", false)
    };
-   ResultPair[] testUrlPort = {new ResultPair(":80", true),
+   public static ResultPair[] testUrlPort = {new ResultPair(":80", true),
                              new ResultPair(":65535", true), // max possible
                              new ResultPair(":65536", false), // max possible +1
                              new ResultPair(":0", true),
@@ -544,7 +548,7 @@ protected void setUp() {
                              new ResultPair(":999999999999999999", false),
                              new ResultPair(":65a", false)
    };
-   ResultPair[] testPath = {new ResultPair("/test1", true),
+   public static ResultPair[] testPath = {new ResultPair("/test1", true),
                           new ResultPair("/t123", true),
                           new ResultPair("/$23", true),
                           new ResultPair("/..", false),
@@ -556,7 +560,7 @@ protected void setUp() {
                           new ResultPair("/test1//file", false)
    };
    //Test allow2slash, noFragment
-   ResultPair[] testUrlPathOptions = {new ResultPair("/test1", true),
+   public static ResultPair[] testUrlPathOptions = {new ResultPair("/test1", true),
                                     new ResultPair("/t123", true),
                                     new ResultPair("/$23", true),
                                     new ResultPair("/..", false),
@@ -573,7 +577,7 @@ protected void setUp() {
                                     new ResultPair("/#/file", false)
    };
 
-   ResultPair[] testUrlQuery = {new ResultPair("?action=view", true),
+   public static ResultPair[] testUrlQuery = {new ResultPair("?action=view", true),
                               new ResultPair("?action=edit&mode=up", true),
                               new ResultPair("", true)
    };
@@ -587,7 +591,7 @@ protected void setUp() {
                                       "not_valid" // TODO this will need to be dropped if the ctor validates schemes
                                     };
 
-   ResultPair[] testScheme = {new ResultPair("http", true),
+   public static ResultPair[] testScheme = {new ResultPair("http", true),
                             new ResultPair("ftp", false),
                             new ResultPair("httpd", false),
                             new ResultPair("gopher", true),

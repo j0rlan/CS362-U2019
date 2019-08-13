@@ -1,3 +1,4 @@
+package files;
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
  * contributor license agreements.  See the NOTICE file distributed with
@@ -189,7 +190,7 @@ public class UrlValidator implements Serializable {
     /**
      * If no schemes are provided, default to this set.
      */
-    private static final String[] DEFAULT_SCHEMES = {"http", "https", "ftp"}; // Must be lower-case
+    private static final String[] DEFAULT_SCHEMES = { "ftp"}; // Must be lower-case, ADDED BUG changed default schemes
 
     /**
      * Singleton instance of this class with default schemes and options.
@@ -295,8 +296,8 @@ public class UrlValidator implements Serializable {
      * @return true if the url is valid.
      */
     public boolean isValid(String value) {
-        if (value == null) {
-            return false;
+        if (value == null) {//ADDED BUG, null returns true instead of false
+            return true;
         }
 
         // Check the whole url address structure
@@ -349,7 +350,7 @@ public class UrlValidator implements Serializable {
      * invalid.
      * @return true if valid.
      */
-    protected boolean isValidScheme(String scheme) {
+    public boolean isValidScheme(String scheme) {
         if (scheme == null) {
             return false;
         }
@@ -476,8 +477,8 @@ public class UrlValidator implements Serializable {
         if (query == null) {
             return true;
         }
-
-        return QUERY_PATTERN.matcher(query).matches();
+        return false;                                     // ADDED BUG: disallows URL strings that end in queries
+        //return QUERY_PATTERN.matcher(query).matches();
     }
 
     /**
